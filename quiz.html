@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .question {
+      margin-bottom: 20px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .question h3 {
+      margin-bottom: 10px;
+    }
+    .question label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    #submit-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007ACC;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: green;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Quick Quiz</h1>
+
+  <form id="quizForm">
+    <div class="question">
+      <h3>1. What does HTML stand for?</h3>
+      <label><input type="radio" name="q1" value="a" /> Hyper Text Markup Language</label>
+      <label><input type="radio" name="q1" value="b" /> Home Tool Markup Language</label>
+      <label><input type="radio" name="q1" value="c" /> Hyperlinks and Text Markup Language</label>
+    </div>
+
+    <div class="question">
+      <h3>2. Which language is used for styling web pages?</h3>
+      <label><input type="radio" name="q2" value="a" /> HTML</label>
+      <label><input type="radio" name="q2" value="b" /> CSS</label>
+      <label><input type="radio" name="q2" value="c" /> JavaScript</label>
+    </div>
+
+    <div class="question">
+      <h3>3. What does CSS stand for?</h3>
+      <label><input type="radio" name="q3" value="a" /> Cascading Style Sheets</label>
+      <label><input type="radio" name="q3" value="b" /> Colorful Style Sheets</label>
+      <label><input type="radio" name="q3" value="c" /> Computer Style Sheets</label>
+    </div>
+
+    <button type="submit" id="submit-btn">Submit</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get user answers
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      const q3 = document.querySelector('input[name="q3"]:checked');
+
+      if (!q1 || !q2 || !q3) {
+        alert("Please answer all questions before submitting.");
+        return;
+      }
+
+      // Correct answers
+      const answers = {
+        q1: "a",
+        q2: "b",
+        q3: "a"
+      };
+
+      let score = 0;
+      if (q1.value === answers.q1) score++;
+      if (q2.value === answers.q2) score++;
+      if (q3.value === answers.q3) score++;
+
+      document.getElementById('result').textContent = `You scored ${score}/3!`;
+    });
+  </script>
+
+</body>
+</html>
+
